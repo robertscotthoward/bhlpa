@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Home</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+      function log(s) {
+        console.log(s);
+        l = $('#out').text();
+        l += s + '\n';
+        $('#out').text(l);
+      }
+
+      $(async () => {
+        log('Start');
+        var browser = window.Browser;
+        console.log(browser)
+        var po = browser.getPlatformObject();
+        console.log(await po.getDeviceInfoAsync());
+        log(`browser.getOperatingSystem:  ${await browser.getOperatingSystem()}`);
+        log(`po.getDeviceInfoAsync:       ${JSON.stringify(await po.getDeviceInfoAsync())}`)
+        log(`po.getGeoCoordinatesAsync:   ${JSON.stringify(await po.getGeoCoordinatesAsync())}`)
+        po.showSettings()
+        log(`po.showSettings:       WORKS!`)
+      });
+    </script>
+  </head>
+  <body></body>
+  <pre id="out"></pre>
+</html>
